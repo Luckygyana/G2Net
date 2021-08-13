@@ -1,0 +1,6 @@
+df_path: ${df_path} 
+fold: 0
+num_workers: 0
+pin_memory: False
+train_batch_size: 64
+val_batch_size: 128

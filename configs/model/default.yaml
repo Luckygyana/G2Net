@@ -1,0 +1,4 @@
+model_name: 'resnet18'
+out_features: 1
+inp_channels: 1
+pretrained: True 
