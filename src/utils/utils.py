@@ -145,12 +145,13 @@ def log_hyperparameters(
 
     # save number of model parameters
     print(model)
-    hparams["model/params_total"] = sum(p.numel() for p in model.model.parameters())
+    print(model.model)
+    hparams["model/params_total"] = sum(p.numel() for p in model.parameters())
     hparams["model/params_trainable"] = sum(
-        p.numel() for p in model.model.parameters() if p.requires_grad
+        p.numel() for p in model.parameters() if p.requires_grad
     )
     hparams["model/params_not_trainable"] = sum(
-        p.numel() for p in model.model.parameters() if not p.requires_grad
+        p.numel() for p in model.parameters() if not p.requires_grad
     )
 
     # send hparams to all loggers

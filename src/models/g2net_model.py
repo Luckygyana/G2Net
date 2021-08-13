@@ -8,7 +8,7 @@ from sklearn.metrics import roc_auc_score
 from src.utils.technical_utils import load_obj
 
 
-class Trainer(pl.LightningModule):
+class G2Model(pl.LightningModule):
     def __init__(self, cfg):
         super().__init__()
         self.cfg = cfg

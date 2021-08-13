@@ -13,6 +13,7 @@ from pytorch_lightning.loggers import LightningLoggerBase
 
 from src.utils import utils
 from src.dataloader.datamodule import DataModule
+from src.models import G2Model
 
 log = utils.get_logger(__name__)
 
@@ -36,7 +37,7 @@ def train(config: DictConfig) -> Optional[float]:
 
     # Init lightning model
     log.info(f"Instantiating model <{config.model}>")
-    model: LightningModule = Trainer(config)
+    model: LightningModule = G2Model(config)
 
     # Init lightning callbacks
     callbacks: List[Callback] = []
