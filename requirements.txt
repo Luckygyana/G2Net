@@ -1,15 +1,16 @@
 # --------- pytorch --------- #
-torch
-torchvision
-pytorch-lightning
+torch>=1.8.1
+torchvision>=0.9.1
+pytorch-lightning>=1.3.8
 nnAudio
+timm
 # --------- hydra --------- #
 hydra-core==1.1.0
 hydra-colorlog==1.1.0
 hydra-optuna-sweeper==1.1.0
-# hydra-ax-sweeper
-# hydra-ray-launcher
-# hydra-submitit-launcher
+hydra-ax-sweeper
+hydra-ray-launcher
+hydra-submitit-launcher
 
 # --------- loggers --------- #
 wandb
