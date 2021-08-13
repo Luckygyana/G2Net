@@ -18,7 +18,15 @@ def get_logger(name=__name__, level=logging.INFO) -> logging.Logger:
 
     # this ensures all logging levels get marked with the rank zero decorator
     # otherwise logs would get multiplied for each GPU process in multi-GPU setup
-    for level in ("debug", "info", "warning", "error", "exception", "fatal", "critical"):
+    for level in (
+        "debug",
+        "info",
+        "warning",
+        "error",
+        "exception",
+        "fatal",
+        "critical",
+    ):
         setattr(logger, level, rank_zero_only(getattr(logger, level)))
 
     return logger
@@ -51,7 +59,9 @@ def extras(config: DictConfig) -> None:
 
     # force debugger friendly configuration if <config.trainer.fast_dev_run=True>
     if config.trainer.get("fast_dev_run"):
-        log.info("Forcing debugger friendly configuration! <config.trainer.fast_dev_run=True>")
+        log.info(
+            "Forcing debugger friendly configuration! <config.trainer.fast_dev_run=True>"
+        )
         # Debuggers don't like GPUs or multiprocessing
         if config.trainer.get("gpus"):
             config.trainer.gpus = 0
@@ -67,7 +77,14 @@ def extras(config: DictConfig) -> None:
 @rank_zero_only
 def print_config(
     config: DictConfig,
-    fields: Sequence[str] = ("trainer", "model", "datamodule", "callbacks", "logger", "seed",),
+    fields: Sequence[str] = (
+        "trainer",
+        "model",
+        "datamodule",
+        "callbacks",
+        "logger",
+        "seed",
+    ),
     resolve: bool = True,
 ) -> None:
     """Prints content of DictConfig using Rich library and its tree structure.
@@ -127,12 +144,12 @@ def log_hyperparameters(
         hparams["callbacks"] = config["callbacks"]
 
     # save number of model parameters
-    hparams["model/params_total"] = sum(p.numel() for p in model.parameters())
+    hparams["model/params_total"] = sum(p.numel() for p in model.model.parameters())
     hparams["model/params_trainable"] = sum(
-        p.numel() for p in model.parameters() if p.requires_grad
+        p.numel() for p in model.model.parameters() if p.requires_grad
     )
     hparams["model/params_not_trainable"] = sum(
-        p.numel() for p in model.parameters() if not p.requires_grad
+        p.numel() for p in model.model.parameters() if not p.requires_grad
     )
 
     # send hparams to all loggers
