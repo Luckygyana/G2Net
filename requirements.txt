@@ -2,7 +2,7 @@
 torch
 torchvision
 pytorch-lightning
-
+nnAudio
 # --------- hydra --------- #
 hydra-core==1.1.0
 hydra-colorlog==1.1.0
