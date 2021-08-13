@@ -13,7 +13,7 @@ from pytorch_lightning.loggers import LightningLoggerBase
 
 from src.utils import utils
 from src.dataloader.datamodule import DataModule
-from src.models import G2Model
+from src.models.g2net_model import G2Model
 
 log = utils.get_logger(__name__)
 
