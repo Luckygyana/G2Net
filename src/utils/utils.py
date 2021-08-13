@@ -144,8 +144,6 @@ def log_hyperparameters(
         hparams["callbacks"] = config["callbacks"]
 
     # save number of model parameters
-    print(model)
-    print(model.model)
     hparams["model/params_total"] = sum(p.numel() for p in model.parameters())
     hparams["model/params_trainable"] = sum(
         p.numel() for p in model.parameters() if p.requires_grad
