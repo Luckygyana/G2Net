@@ -26,7 +26,7 @@ work_dir: ${hydra:runtime.cwd}
 # path to folder with data
 df_path: ${work_dir}/data/
 
-tune_model: False
+should_auto_scale_bs: False
 
 # use `python run.py debug=true` for easy debugging!
 # this will run 1 train, val and test loop with only 1 batch
