@@ -73,7 +73,7 @@ def train(config: DictConfig) -> Optional[float]:
     )
     
     #tune
-    if confug.tune_model:
+    if config.tune_model:
         trainer.tune(model)
 
     # Train the model
