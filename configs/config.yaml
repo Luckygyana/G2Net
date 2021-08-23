@@ -20,10 +20,13 @@ defaults:
 # hydra hijacks working directory by changing it to the current log directory,
 # so it's useful to have this path as a special variable
 # learn more here: https://hydra.cc/docs/next/tutorials/basic/running_your_app/working_directory
+seed: 42
 work_dir: ${hydra:runtime.cwd}
 
 # path to folder with data
 df_path: ${work_dir}/data/
+
+tune_model: False
 
 # use `python run.py debug=true` for easy debugging!
 # this will run 1 train, val and test loop with only 1 batch
