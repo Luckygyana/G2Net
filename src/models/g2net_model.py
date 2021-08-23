@@ -68,7 +68,7 @@ class G2Model(pl.LightningModule):
         self.log("train_auc", train_auc, prog_bar=True, logger=True)
 
     def validation_step(self, batch, batch_idx):
-        x, lables = batch
+        x, labels = batch
         output = self.model(x)
         loss = self.criterion(output.view(-1), labels)
 
