@@ -26,13 +26,13 @@ class DataModule(pl.LightningDataModule):
         self.train_dataset = G2Dataset(
             images_filepaths=self.train_data["image_path"].values,
             targets=self.train_data["target"].values,
-            transform=hydra.utils.instantiate(self.train_transforms),
+            transform=self.train_transforms,
         )
 
         self.val_dataset = G2Dataset(
             images_filepaths=self.valid_data["image_path"].values,
             targets=self.valid_data["target"].values,
-            transform=hydra.utils.instantiate(self.val_transforms),
+            transform=self.val_transforms,
         )
 
     def train_dataloader(self):
