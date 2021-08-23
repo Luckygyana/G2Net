@@ -1,4 +1,4 @@
-model_name: 'resnet18'
+model_name: 'tf_efficientnet_b7_ns'
 out_features: 1
 inp_channels: 1
 pretrained: True 
