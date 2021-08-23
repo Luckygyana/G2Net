@@ -73,8 +73,10 @@ def train(config: DictConfig) -> Optional[float]:
     )
     
     #tune
-    if config.tune_model:
-        trainer.tune(model)
+    if config.should_auto_scale_bs:
+        tuner = pl.tuner.tuning.Tuner(trainer)
+        new_batch_size = tuner.scale_batch_size(datamodule, mode="binsearch", init_val=16)
+        trainer.tune(datamodule)
 
     # Train the model
     log.info("Starting training!")
