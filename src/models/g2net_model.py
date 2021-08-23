@@ -38,10 +38,9 @@ class G2Model(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
 
-        x, y = batch
+        x, labels = batch
         output = self.model(x)
-        labels = y.unsqueeze(1)
-        loss = self.criterion(output, labels)
+        loss = self.criterion(output.view(-1), labels)
 
         try:
             auc = roc_auc_score(labels.detach().cpu(), output.sigmoid().detach().cpu())
@@ -69,10 +68,9 @@ class G2Model(pl.LightningModule):
         self.log("train_auc", train_auc, prog_bar=True, logger=True)
 
     def validation_step(self, batch, batch_idx):
-        x, y = batch
+        x, lables = batch
         output = self.model(x)
-        labels = y.unsqueeze(1)
-        loss = self.criterion(output, labels)
+        loss = self.criterion(output.view(-1), labels)
 
         self.log("val_loss", loss, on_step=True, prog_bar=True, logger=True)
         return {"preds": output, "targets": labels}
