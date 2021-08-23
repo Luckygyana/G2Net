@@ -71,6 +71,10 @@ def train(config: DictConfig) -> Optional[float]:
         callbacks=callbacks,
         logger=logger,
     )
+    
+    #tune
+    if confug.tune_model:
+        trainer.tune(model)
 
     # Train the model
     log.info("Starting training!")
