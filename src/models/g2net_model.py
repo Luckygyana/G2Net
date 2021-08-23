@@ -31,7 +31,7 @@ class G2Model(pl.LightningModule):
             self.model.classifier = nn.Linear(n_features, self.cfg.model.out_features, bias=True)
 
         self.criterion = load_obj(cfg.loss.class_name)()
-
+        self.batch_size = self.cfg.datamodule.train_batch_size
     def forward(self, x):
         output = self.model(x)
         return output
