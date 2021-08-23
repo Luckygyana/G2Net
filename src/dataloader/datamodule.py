@@ -19,7 +19,7 @@ class DataModule(pl.LightningDataModule):
         self.val_transforms = load_augs(self.cfg["augmentation"]["valid"]["augs"])
         self.num_workers = self.cfg.datamodule.num_workers
         self.pin_memory = self.cfg.datamodule.pin_memory
-        self.train_batch_size = self.cfg.datamodule.train_batch_size
+        self.batch_size = self.cfg.datamodule.train_batch_size
         self.val_batch_size = self.cfg.datamodule.val_batch_size
 
     def setup(self, stage=None):
@@ -42,7 +42,7 @@ class DataModule(pl.LightningDataModule):
     def train_dataloader(self):
         return DataLoader(
             self.train_dataset,
-            batch_size=self.train_batch_size,
+            batch_size=self.batch_size,
             shuffle=True,
             num_workers=self.num_workers,
             pin_memory=self.pin_memory,
