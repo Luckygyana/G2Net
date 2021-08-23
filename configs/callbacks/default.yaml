@@ -1,6 +1,6 @@
 model_checkpoint_on_auc:
   _target_: pytorch_lightning.callbacks.ModelCheckpoint
-  monitor: "val_acc" # name of the logged metric which determines when model is improving
+  monitor: "val_auc" # name of the logged metric which determines when model is improving
   mode: "max" # can be "max" or "min"
   save_top_k: 1 # save k best models (determined by above metric)
   save_last: True # additionaly always save model from last epoch
