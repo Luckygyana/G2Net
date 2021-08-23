@@ -34,6 +34,10 @@ class DataModule(pl.LightningDataModule):
             targets=self.valid_data["target"].values,
             transform=self.val_transforms,
         )
+        
+        print('Just Debugging The Dataset')
+        x,y = self.train_dataset[0]
+        print(x.shape,y.shape)
 
     def train_dataloader(self):
         return DataLoader(
