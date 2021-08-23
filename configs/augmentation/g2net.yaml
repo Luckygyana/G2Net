@@ -1,0 +1,10 @@
+train:
+  augs:
+    - class_name: albumentations.pytorch.transforms.ToTensorV2
+      params:
+        p: 1.0
+valid:
+  augs:
+  - class_name: albumentations.pytorch.transforms.ToTensorV2
+    params:
+        p: 1.0
