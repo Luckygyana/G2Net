@@ -22,7 +22,7 @@ model_checkpoint_on_loss:
 
 early_stopping:
   _target_: pytorch_lightning.callbacks.EarlyStopping
-  monitor: "val_acc" # name of the logged metric which determines when model is improving
+  monitor: "val_auc" # name of the logged metric which determines when model is improving
   mode: "max" # can be "max" or "min"
   patience: 100 # how many epochs of not improving until training stops
   min_delta: 0 # minimum change in the monitored metric needed to qualify as an improvement
