@@ -18,15 +18,15 @@ class G2Model(pl.LightningModule):
             in_chans=self.cfg.model.inp_channels,
         )
 
-        if self.cfg.model.model_name == "resnet18d":
+        if "resent" in self.cfg.model.model_name:
             n_features = self.model.fc.in_features
             self.model.fc = nn.Linear(n_features, self.cfg.model.out_features, bias=True)
 
-        if self.cfg.model.model_name == "nfnet_f1":
+        if "nfnet" in self.cfg.model.model_name:
             n_features = self.model.head.fc.in_features
             self.model.head.fc = nn.Linear(n_features, self.cfg.model.out_features, bias=True)
 
-        elif self.cfg.model.model_name == "efficientnet_b1":
+        elif "eff" in self.cfg.model.model_name:
             n_features = self.model.classifier.in_features
             self.model.classifier = nn.Linear(n_features, self.cfg.model.out_features, bias=True)
 
