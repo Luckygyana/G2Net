@@ -8,6 +8,7 @@ from pytorch_lightning import (
     LightningModule,
     Trainer,
     seed_everything,
+    tuner
 )
 from pytorch_lightning.loggers import LightningLoggerBase
 
@@ -74,8 +75,8 @@ def train(config: DictConfig) -> Optional[float]:
     
     #tune
     if config.should_auto_scale_bs:
-        tuner = pl.tuner.tuning.Tuner(trainer)
-        new_batch_size = tuner.scale_batch_size(datamodule, mode="binsearch", init_val=16)
+        pltuner = tuner.tuning.Tuner(trainer)
+        new_batch_size = pltuner.scale_batch_size(datamodule, mode="binsearch", init_val=16)
         trainer.tune(datamodule)
 
     # Train the model
